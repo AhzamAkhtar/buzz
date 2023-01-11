@@ -33,16 +33,18 @@ export function useBuzz() {
 
     useEffect(()=>{
         const getAllUsers = async () => {
+            console.log("getalluser")
             if(program && publicKey && !transactionPending){
                 try{
                     const [profilePda] = await findProgramAddressSync([utf8.encode("USER_STATE"),publicKey.toBuffer()],program.programId)
-                    const userAccount = await program.account.userProfile.fetch([profilePda])
+                    const userAccount = await program.account.userProfile.fetch(profilePda)
 
                     if (userAccount){
                         setInitialized(true)
 
                         const allUserAccount = await program.account.userProfile.all()
                         setAllUsers(allUserAccount)
+                        console.log(allUsers)
 
                     } else {
                         setInitialized(false)
@@ -111,6 +113,7 @@ export function useBuzz() {
 
     return{
         initialized,
+        transactionPending,
         name,
         age,
         gender,
