@@ -19,6 +19,7 @@ export function useBuzz() {
     const [initialized , setInitialized] = useState(false)
     const [transactionPending , setTransactionPending] = useState(false)
 
+    const [followers , setFollowers] = useState(1)
     const [name , setName] = useState()
     const [age , setAge] = useState()
     const [gender , setGender] = useState()
@@ -79,7 +80,6 @@ export function useBuzz() {
     }
 
     const initializeUser = async () => {
-        console.log("init")
         if(program && publicKey){
             try{
                 setTransactionPending(true)
@@ -111,6 +111,38 @@ export function useBuzz() {
         }
     } 
 
+    const addFriendfun = async (namef,agef,genderf,urlf,walletadress) => {
+        if(program && publicKey){
+            try{
+                setTransactionPending(true)
+                const [profilePda] = findProgramAddressSync([utf8.encode("USER_STATE"),publicKey.toBuffer()],program.programId)
+                const [addfriend] = findProgramAddressSync([utf8.encode("FRIEND_STATE"),publicKey.toBuffer(), Uint8Array.from([followers])],program.programId)
+                if(namef && genderf && agef && urlf) {
+                    await program.methods
+                    .addFriend(
+                        namef,
+                        genderf,
+                        agef,
+                        urlf,
+                        walletadress
+                    )
+                    .accounts({
+                        userProfile : profilePda,
+                        addFriend : addfriend,
+                        authority : publicKey,
+                        SystemProgram : SystemProgram.programId,
+                    })
+                    .rpc()
+
+                }                    
+            } catch(error){
+                console.log(error)
+            } finally {
+
+            }
+        }
+    }
+
     return{
         initialized,
         transactionPending,
@@ -123,6 +155,7 @@ export function useBuzz() {
         genderHandler,
         profileUrlHandler,
         initializeUser,
+        addFriendfun,
         allUsers
     }
 

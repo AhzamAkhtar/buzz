@@ -16,6 +16,7 @@ const Home = () => {
     genderHandler,
     profileUrlHandler,
     initializeUser,
+    addFriendfun,
     allUsers
   } = useBuzz()
 
@@ -35,7 +36,13 @@ const Home = () => {
               <h4>{item.account.age}</h4>
               <h4>{item.account.gender}</h4>
               <h4>{item.account.profileUrl}</h4>
-              
+              <button onClick={()=>addFriendfun(
+                item.account.name,
+                item.account.age,
+                item.account.gender,
+                item.account.profileUrl,
+                "testing123"
+              )}>Add friend</button>
             </div>
               
             </>
