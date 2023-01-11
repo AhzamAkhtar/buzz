@@ -1,0 +1,126 @@
+import * as anchor from '@project-serum/anchor'
+import { useEffect, useMemo, useState } from 'react'
+import { TODO_PROGRAM_PUBKEY } from '../constants'
+import todoIDL from '../constants/buzz.json'
+
+import { SystemProgram } from '@solana/web3.js'
+import { utf8 } from '@project-serum/anchor/dist/cjs/utils/bytes'
+import { findProgramAddressSync } from '@project-serum/anchor/dist/cjs/utils/pubkey'
+import { useAnchorWallet, useConnection, useWallet } from '@solana/wallet-adapter-react'
+import { authorFilter } from '../utils'
+import { set } from '@project-serum/anchor/dist/cjs/utils/features'
+
+export function useBuzz() {
+    const {connection} = useConnection()
+    const {publicKey} = useWallet()
+    const anchorWallet = useAnchorWallet()
+
+    const [allUsers , setAllUsers] = useState([])
+    const [initialized , setInitialized] = useState(false)
+    const [transactionPending , setTransactionPending] = useState(false)
+
+    const [name , setName] = useState()
+    const [age , setAge] = useState()
+    const [gender , setGender] = useState()
+    const [profileUrl , setProfileUrl] = useState()
+
+    const program = useMemo(() => {
+        if (anchorWallet) {
+            const provider = new anchor.AnchorProvider(connection, anchorWallet, anchor.AnchorProvider.defaultOptions())
+            return new anchor.Program(todoIDL, TODO_PROGRAM_PUBKEY, provider)
+        }
+    }, [connection, anchorWallet])
+
+    useEffect(()=>{
+        const getAllUsers = async () => {
+            if(program && publicKey && !transactionPending){
+                try{
+                    const [profilePda] = await findProgramAddressSync([utf8.encode("USER_STATE"),publicKey.toBuffer()],program.programId)
+                    const userAccount = await program.account.userProfile.fetch([profilePda])
+
+                    if (userAccount){
+                        setInitialized(true)
+
+                        const allUserAccount = await program.account.userProfile.all()
+                        setAllUsers(allUserAccount)
+
+                    } else {
+                        setInitialized(false)
+                    }
+                } catch (error){
+                    console.log(error)
+                    setInitialized(false)
+                    setAllUsers([])
+                } finally{
+                    console.log("Done")
+                }
+            }
+        }
+        getAllUsers()
+
+    },[publicKey,program,transactionPending])
+
+    const nameHandler = (e) => {
+        setName(e.target.value)
+    }
+    
+    const ageHandler = (e) => {
+        setAge(e.target.value)
+    }
+
+    const genderHandler = (e) => {
+        setGender(e.target.value)
+    }
+
+    const profileUrlHandler = (e) => {
+        setProfileUrl(e.target.value)
+    }
+
+    const initializeUser = async () => {
+        console.log("init")
+        if(program && publicKey){
+            try{
+                setTransactionPending(true)
+                const [profilePda] = findProgramAddressSync([utf8.encode("USER_STATE"),publicKey.toBuffer()],program.programId)
+                if(name && age && gender && profileUrl){
+                    const tx = await program.methods.initializeUser(
+                        name,
+                        age,
+                        gender,
+                        profileUrl
+                    )
+                    .accounts({
+                        userProfile : profilePda,
+                        authority : publicKey,
+                        SystemProgram : SystemProgram.programId,
+                    })
+                    .rpc()
+                    setInitialized(true)
+                }
+            } catch(error) {
+                console.log(error)
+            } finally {
+                setTransactionPending(false)
+                setName("")
+                setAge("")
+                setGender("")
+                setProfileUrl(" ")
+            }
+        }
+    } 
+
+    return{
+        initialized,
+        name,
+        age,
+        gender,
+        profileUrl,
+        nameHandler,
+        ageHandler,
+        genderHandler,
+        profileUrlHandler,
+        initializeUser,
+        allUsers
+    }
+
+}
