@@ -25,10 +25,10 @@ const Home = () => {
 
     {initialized ? (
       <>
-        <h1>Initialized</h1>
+        {/* <h1>Initialized</h1> */}
         
 
-        {allUsers.map((item)=>{
+        {/* {allUsers.map((item)=>{
           return (
             <>
             <div>
@@ -47,20 +47,20 @@ const Home = () => {
               
             </>
           )
-        })}
+        })} */}
 
       </>
     ) : (
       <>
-      <input placeholder='Enter your name' value={name} onChange={nameHandler} type="text"></input>
+      {/* <input placeholder='Enter your name' value={name} onChange={nameHandler} type="text"></input>
       <input placeholder='Enter the age' value={age} onChange={ageHandler} type="text"></input>
       <input placeholder='Enter the gender' value={gender} onChange={genderHandler} type="text"></input>
       <input placeholder='Enter the profile url' value={profileUrl} onChange={profileUrlHandler} type="text"></input>
-      <button onClick={() => initializeUser()} disabled={transactionPending} >INITIALIZED</button>
-      <h1>Not Initialized</h1>
+      <button onClick={() => initializeUser()} disabled={transactionPending} >INITIALIZED</button> */}
+      {/* <h1>Not Initialized</h1> */}
       </>
     )}
-    <WalletMultiButton/>
+    {/* <WalletMultiButton/> */}
     </>
   )
 }
