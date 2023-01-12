@@ -1,6 +1,9 @@
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
-import {AiOutlineArrowRight} from 'react-icons/ai'
+import { AiOutlineArrowRight } from "react-icons/ai";
+import {BsArrowRight} from 'react-icons/bs'
+import { useBuzz } from "../hook/buzz";
 const Navbar = () => {
+  
   return (
     <>
       <header class="text-gray-600 body-font">
@@ -27,16 +30,14 @@ const Navbar = () => {
             <a class="mr-5 hover:text-gray-900">Fourth Link</a> */}
           </nav>
           <WalletMultiButton
-          
             style={{
-              margin : "10px",
-              borderRadius : "50vw"
-              
+              marginRight: "10px",
+              borderRadius: "50vw",
             }}
           />
-          <button class="bg-white text-black  font-bold py-2 px-4 rounded-3xl inline-flex items-center">
+          <button class="bg-white text-black py-2 px-4 rounded-3xl inline-flex items-center">
             <span>DIVE IN</span>
-            <AiOutlineArrowRight className="ml-1 w-8"/>
+            <BsArrowRight className="ml-1 w-5 text-3xl" />
           </button>
         </div>
       </header>
