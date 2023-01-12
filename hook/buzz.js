@@ -24,7 +24,7 @@ export function useBuzz() {
     const [age , setAge] = useState()
     const [gender , setGender] = useState()
     const [profileUrl , setProfileUrl] = useState()
-
+    const [loading , setLoading] = useState(false)
     const program = useMemo(() => {
         if (anchorWallet) {
             const provider = new anchor.AnchorProvider(connection, anchorWallet, anchor.AnchorProvider.defaultOptions())
@@ -82,6 +82,7 @@ export function useBuzz() {
     const initializeUser = async () => {
         if(program && publicKey){
             try{
+                setLoading(true)
                 setTransactionPending(true)
                 const [profilePda] = findProgramAddressSync([utf8.encode("USER_STATE"),publicKey.toBuffer()],program.programId)
                 if(name && age && gender && profileUrl){
@@ -101,7 +102,9 @@ export function useBuzz() {
                 }
             } catch(error) {
                 console.log(error)
+                setLoading(false)
             } finally {
+                setLoading(false)
                 setTransactionPending(false)
                 setName("")
                 setAge("")
@@ -156,7 +159,8 @@ export function useBuzz() {
         profileUrlHandler,
         initializeUser,
         addFriendfun,
-        allUsers
+        allUsers,
+        loading
     }
 
 }
