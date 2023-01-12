@@ -5,9 +5,14 @@ import { BsArrowRight } from "react-icons/bs";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { useBuzz } from "../hook/buzz";
 import { useEffect, useState } from "react";
+import { LoginUtil } from "./LoginUtil";
 import Login from "./Login";
 const Hero = () => {
   const { initialized } = useBuzz();
+  const {
+    loginState,
+    turnLoginTrue,
+  } = LoginUtil()
   const [disabled, setDisabled] = useState(true);
   const [loginPointer, setLoginPointer] = useState("not-allowed");
   const [diveInPointer, setDiveInPointer] = useState("pointer");
@@ -60,7 +65,7 @@ const Hero = () => {
         </h1>
         <div class="flex justify-center">
           <button
-            onClick={() => setLogin(true)}
+            onClick={() => turnLoginTrue()}
             class={`bg-white text-black py-4 px-10 rounded-3xl inline-flex items-center mx-10 mt-10 cursor-${loginPointer}`}
             disabled={!disabled}
           >
@@ -75,7 +80,7 @@ const Hero = () => {
             <BsArrowRight className="ml-1 w-5 text-3xl" />
           </button>
         </div>
-        {login ? (
+        {loginState ? (
           <>
           <Login />
           </>

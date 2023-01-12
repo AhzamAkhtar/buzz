@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import { useState } from "react";
 import { useBuzz } from "../hook/buzz";
+import { LoginUtil } from './LoginUtil';
 const Login = () => {
   const {
     initialized,
@@ -16,6 +17,12 @@ const Login = () => {
     initializeUser,
     loading,
   } = useBuzz();
+
+  const {turnLoginFalse} = LoginUtil()
+  const LoginClick = () => {
+    initializeUser()
+    turnLoginFalse()
+  }
   return (
     <>
       <section class="text-gray-600 body-font relative my-18">
@@ -116,7 +123,7 @@ const Login = () => {
             ) : (
               <>
                 <button
-                  onClick={() => initializeUser()}
+                  onClick={() => LoginClick()}
                   disabled={transactionPending}
                   class="text-gray-500 bg-white border-0 py-2 px-6 focus:outline-none hover:bg-transparent text-lg rounded-2xl"
                 >
