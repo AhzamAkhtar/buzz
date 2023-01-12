@@ -2,7 +2,6 @@ import Image from "next/image";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import { CiLogin } from "react-icons/ci";
 import { BsArrowRight } from "react-icons/bs";
-import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { useBuzz } from "../hook/buzz";
 import { useEffect, useState } from "react";
 import { LoginUtil } from "./LoginUtil";

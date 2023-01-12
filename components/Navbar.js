@@ -1,9 +1,14 @@
-import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
+import dynamic from 'next/dynamic';
 import { useEffect, useState } from "react";
 import { BsArrowRight } from "react-icons/bs";
 import { useBuzz } from "../hook/buzz";
 import { CiLogin } from "react-icons/ci";
 const Navbar = () => {
+  const WalletMultiButtonDynamic = dynamic(
+    async () => (await import('@solana/wallet-adapter-react-ui')).WalletMultiButton,
+    { ssr: false }
+);
+
   const [word, setWord] = useState("LOGIN");
   const [loginIcon,setLoginIcon] = useState(true)
   const { initialized } = useBuzz();
@@ -46,7 +51,7 @@ const Navbar = () => {
             <a class="mr-5 hover:text-gray-900">Third Link</a>
             <a class="mr-5 hover:text-gray-900">Fourth Link</a> */}
           </nav>
-          <WalletMultiButton
+          <WalletMultiButtonDynamic
             style={{
               marginRight: "10px",
               borderRadius: "50vw",
