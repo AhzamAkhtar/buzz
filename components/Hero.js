@@ -7,6 +7,7 @@ import { useBuzz } from "../hook/buzz";
 import { useEffect, useState } from "react";
 import { LoginUtil } from "./LoginUtil";
 import Login from "./Login";
+import {Link} from 'react-scroll'
 const Hero = () => {
   const { initialized } = useBuzz();
   const {
@@ -34,7 +35,9 @@ const Hero = () => {
   }, [initialized]);
   return (
     <>
-      <div
+    <div id="top">
+
+      <div 
         style={{
           zIndex: -1,
           position: "fixed",
@@ -64,7 +67,9 @@ const Hero = () => {
           <h1>With buzz...</h1>
         </h1>
         <div class="flex justify-center">
-          <button
+        <nav>
+        <Link to="login" spy={true} smooth={true} offset={20} duration={1000}>
+        <button
             onClick={() => turnLoginTrue()}
             class={`bg-white text-black py-4 px-10 rounded-3xl inline-flex items-center mx-10 mt-10 cursor-${loginPointer}`}
             disabled={!disabled}
@@ -72,6 +77,8 @@ const Hero = () => {
             <span>LOGIN</span>
             <CiLogin className="ml-1 w-8 text-3xl" />
           </button>
+        </Link>
+        </nav>
           <button
             class={`bg-white text-black py-4 px-10 rounded-3xl inline-flex items-center mx-10 mt-10 cursor-${diveInPointer}`}
             disabled={disabled}
@@ -88,6 +95,7 @@ const Hero = () => {
           <></>
         )}
       </div>
+    </div>
     </>
   );
   

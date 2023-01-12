@@ -2,7 +2,7 @@ import * as anchor from '@project-serum/anchor'
 import { useEffect, useMemo, useState } from 'react'
 import { TODO_PROGRAM_PUBKEY } from '../constants'
 import todoIDL from '../constants/buzz.json'
-
+import { toast, ToastContainer } from "react-toastify";
 import { SystemProgram } from '@solana/web3.js'
 import { utf8 } from '@project-serum/anchor/dist/cjs/utils/bytes'
 import { findProgramAddressSync } from '@project-serum/anchor/dist/cjs/utils/pubkey'
@@ -25,6 +25,22 @@ export function useBuzz() {
     const [gender , setGender] = useState()
     const [profileUrl , setProfileUrl] = useState()
     const [loading , setLoading] = useState(false)
+
+    const showToast = () => {
+        toast.success("Your Account Created Successfully !!", {
+          toastId: "abx",
+        
+          position: "bottom-left",
+          autoClose: 4000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+        });
+       
+      };
+
     const program = useMemo(() => {
         if (anchorWallet) {
             const provider = new anchor.AnchorProvider(connection, anchorWallet, anchor.AnchorProvider.defaultOptions())
@@ -99,6 +115,11 @@ export function useBuzz() {
                     })
                     .rpc()
                     setInitialized(true)
+                    showToast()
+                    setTimeout(()=>{
+
+                        window.location.reload()
+                    },[3000])
                 }
             } catch(error) {
                 console.log(error)
@@ -110,6 +131,8 @@ export function useBuzz() {
                 setAge("")
                 setGender("")
                 setProfileUrl(" ")
+                window.scrollTo({top:50 , behavior:"smooth"})
+
             }
         }
     } 

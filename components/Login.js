@@ -2,6 +2,9 @@ import Image from 'next/image'
 import { useState } from "react";
 import { useBuzz } from "../hook/buzz";
 import { LoginUtil } from './LoginUtil';
+import { Link } from 'react-scroll';
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const Login = () => {
   const {
     initialized,
@@ -19,13 +22,28 @@ const Login = () => {
   } = useBuzz();
 
   const {turnLoginFalse} = LoginUtil()
+  
+
+
   const LoginClick = () => {
     initializeUser()
     turnLoginFalse()
+    
   }
   return (
     <>
-      <section class="text-gray-600 body-font relative my-18">
+        <ToastContainer
+        position="bottom-left"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+      <section class="text-gray-600 body-font relative my-18" id='login'>
         <div class="container px-5 py-24 mx-auto flex sm:flex-nowrap flex-wrap">
           <div class="lg:w-2/3 md:w-1/2 bg-gray-300 rounded-lg overflow-hidden sm:mr-10 p-10 flex items-end justify-start relative">
             <iframe
@@ -122,6 +140,7 @@ const Login = () => {
               </>
             ) : (
               <>
+        
                 <button
                   onClick={() => LoginClick()}
                   disabled={transactionPending}
@@ -129,6 +148,7 @@ const Login = () => {
                 >
                   Create Your Account Now !!
                 </button>
+              
               </>
             )}
 
