@@ -77,7 +77,7 @@ const Hero = () => {
         </div>
         {login ? (
           <>
-          <Login/>
+          <Login />
           </>
         ) : (
           <></>
@@ -85,6 +85,8 @@ const Hero = () => {
       </div>
     </>
   );
+  
 };
 
 export default Hero;
+
