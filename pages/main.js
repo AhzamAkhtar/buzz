@@ -4,12 +4,12 @@ import Header from "../components/InsideComponent/Header";
 import { useBuzz } from "../hook/buzz";
 import { BsArrowRight } from "react-icons/bs";
 import { BsArrowLeft } from "react-icons/bs";
-import {IoMdPersonAdd} from "react-icons/io"
-import Image from "next/image";
+import { IoMdPersonAdd } from "react-icons/io";
 const main = () => {
   const { allUsers } = useBuzz();
   const [lowerBound, setLowerBound] = useState(0);
   const [upperBound, setUpperBound] = useState(3);
+  
   console.log("length", allUsers.length);
   const showNext = () => {
     setLowerBound(upperBound);
@@ -22,6 +22,9 @@ const main = () => {
   return (
     <>
       <Header />
+      {/* <button class="bg-black py-1 px-3 rounded-full inline-flex justify-end ">
+        AAAA
+      </button> */}
       <section class="text-gray-600 body-font mx-5">
         <div class="container px-5 py-5 mx-auto">
           <div class="flex flex-wrap -m-5 px-24 py-1 ">
@@ -35,36 +38,40 @@ const main = () => {
                     >
                       <a class="block relative rounded overflow-hidden">
                         <img
+                      
                           alt="ecommerce"
-                          class="inset-0 w-full h-full object-cover object-center"
+                          class="inset-0 w-full h-full object-cover object-center bg-black rounded-3xl"
                           src={item.account.profileUrl}
                         />
                       </a>
                       <div class="mt-2 text-center md:text-left">
-                        <h3 class="text-red-500 text-md  title-font mb-1">
+                        <h3 class="text-red-500 text-md  title-font ">
                           {item.account.name}
                         </h3>
                         <div class="flex justify-start">
-                          <h2 class=" text-gray-900 title-font text-base  font-sans">
+                          <h2 class=" text-gray-900 title-font text-sm  font-sans">
                             Gender-{item.account.gender}
                           </h2>
-                          <h2 class=" text-gray-900 title-font text-base mx-5 font-sans">
+                          <h2 class=" text-gray-900 title-font text-sm mx-5 font-sans">
                             Country-{item.account.country}
                           </h2>
-                          <IoMdPersonAdd className="text-2xl"/>
+                          <button class="bg-black py-1 px-3 rounded-full inline-flex items-center">
+
+                          <IoMdPersonAdd className="text-2xl text-white" />
+                          </button>
                         </div>
-                        <h2 class=" text-gray-900 title-font text-base mt-2 font-sans">
+                        <h2 class=" text-gray-900 title-font text-sm mt-2 font-sans">
                           Age - {item.account.age}
                         </h2>
-                        <h2 class=" text-gray-900 title-font text-base mt-2 font-sans">
+                        <h2 class=" text-gray-900 title-font text-sm mt-2 font-sans">
                           No of Friends - {item.account.totalFriend}
                         </h2>
                         <h2 class=" text-gray-900 title-font text-sm mt-2 font-sans">
-                          Description about {item.account.name} - {item.account.description.slice(0,10)+"....."}
+                          Description about {item.account.name} -{" "}
+                          {item.account.description.slice(0, 50) + "....."}
                         </h2>
                       </div>
                     </div>
-                    
                   </>
                 );
               }
@@ -72,12 +79,10 @@ const main = () => {
           </div>
         </div>
         <div className="bg-white rounded-xl">
-
-        <BsArrowRight className="m-auto text-xl" onClick={() => showNext()} />
-        <BsArrowLeft className="m-auto text-xl" onClick={() => showPrev()} />
+          <BsArrowRight className="m-auto text-xl" onClick={() => showNext()} />
+          <BsArrowLeft className="m-auto text-xl" onClick={() => showPrev()} />
         </div>
       </section>
-      
     </>
   );
 };

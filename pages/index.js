@@ -4,6 +4,7 @@ import styles from '../styles/Home.module.css'
 import { useBuzz } from '../hook/buzz'
 import {WalletMultiButton} from '@solana/wallet-adapter-react-ui'
 import Hero from '../components/Hero'
+import Navbar from '../components/Navbar'
 const Home = () => {
   const {
     initialized,
@@ -23,6 +24,7 @@ const Home = () => {
 
   return(
     <>
+  
     <Hero/>
     </>
   )
