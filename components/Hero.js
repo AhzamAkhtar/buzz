@@ -5,8 +5,10 @@ import { BsArrowRight } from "react-icons/bs";
 import { useBuzz } from "../hook/buzz";
 import { useEffect, useState } from "react";
 import { LoginUtil } from "./LoginUtil";
+import {useRouter} from 'next/router'
 import Login from "./Login";
 const Hero = () => {
+  const router = useRouter()
   const { initialized } = useBuzz();
   const {
     loginState,
@@ -78,6 +80,7 @@ const Hero = () => {
       
         </nav>
           <button
+            onClick={()=> router.push("/main")}
             class={`bg-white text-black py-4 px-10 rounded-3xl inline-flex items-center mx-10 mt-10 cursor-${diveInPointer}`}
             disabled={disabled}
           >
