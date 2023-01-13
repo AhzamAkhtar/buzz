@@ -13,10 +13,14 @@ const Login = () => {
     age,
     gender,
     profileUrl,
+    country,
+    description,
     nameHandler,
     ageHandler,
     genderHandler,
     profileUrlHandler,
+    countryHandler,
+    descriptionHandler,
     initializeUser,
     loading,
   } = useBuzz();
@@ -130,6 +134,29 @@ const Login = () => {
                 placeholder="Enter Your Profile Url"
                 onChange={profileUrlHandler}
                 value={profileUrl}
+                type="text"
+                class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-black py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+              />
+            </div>
+            <div class="relative mb-4">
+              <label for="message" class="leading-7 text-sm text-white">
+                Your Country
+              </label>
+              <input
+                placeholder="Enter Your Country"
+                onChange={countryHandler}
+                value={country}
+                type="text"
+                class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-black py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+              />
+            </div><div class="relative mb-4">
+              <label for="message" class="leading-7 text-sm text-white">
+                Description Yourself 
+              </label>
+              <input
+                placeholder="Tell Abount Yourself"
+                onChange={descriptionHandler}
+                value={description}
                 type="text"
                 class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-black py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
               />
