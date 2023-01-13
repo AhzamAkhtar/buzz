@@ -140,7 +140,7 @@ const Login = () => {
             </div>
             <div class="relative mb-4">
               <label for="message" class="leading-7 text-sm text-white">
-                Your Country
+              Description Yourself
               </label>
               <input
                 placeholder="Enter Your Country"
@@ -151,7 +151,7 @@ const Login = () => {
               />
             </div><div class="relative mb-4">
               <label for="message" class="leading-7 text-sm text-white">
-                Description Yourself 
+                Enter Your Country
               </label>
               <input
                 placeholder="Tell Abount Yourself"

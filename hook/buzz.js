@@ -109,10 +109,12 @@ export function useBuzz() {
 
   const countryHandler = (e) => {
     setCountry(e.target.value);
+    console.log(e.target.value+"coun")
   };
 
   const descriptionHandler = (e) => {
     setDesription(e.target.value);
+    console.log(e.target.value+"desc")
   };
 
   const initializeUser = async () => {
@@ -149,6 +151,8 @@ export function useBuzz() {
         setAge("");
         setGender("");
         setProfileUrl("");
+        setCountry("")
+        setDesription("")
         window.scrollTo({ top: 50, behavior: "smooth" });
       }
     }
