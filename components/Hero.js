@@ -6,7 +6,6 @@ import { useBuzz } from "../hook/buzz";
 import { useEffect, useState } from "react";
 import { LoginUtil } from "./LoginUtil";
 import Login from "./Login";
-import {Link} from 'react-scroll'
 const Hero = () => {
   const { initialized } = useBuzz();
   const {
@@ -63,11 +62,11 @@ const Hero = () => {
           }}
         >
           Start a New Journey
-          <h1>With buzz...</h1>
+          <p>With buzz... </p>
         </h1>
         <div class="flex justify-center">
         <nav>
-        <Link to="login" spy={true} smooth={true} offset={20} duration={1000}>
+        
         <button
             onClick={() => turnLoginTrue()}
             class={`bg-white text-black py-4 px-10 rounded-3xl inline-flex items-center mx-10 mt-10 cursor-${loginPointer}`}
@@ -76,7 +75,7 @@ const Hero = () => {
             <span>LOGIN</span>
             <CiLogin className="ml-1 w-8 text-3xl" />
           </button>
-        </Link>
+      
         </nav>
           <button
             class={`bg-white text-black py-4 px-10 rounded-3xl inline-flex items-center mx-10 mt-10 cursor-${diveInPointer}`}

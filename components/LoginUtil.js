@@ -5,6 +5,10 @@ export function LoginUtil() {
 
     const turnLoginTrue = () => {
         setLoginState(true)
+        setTimeout(()=> {
+            window.scrollTo(0,600)
+
+        })
     }
     const turnLoginFalse = () => {
         setLoginState(false)
