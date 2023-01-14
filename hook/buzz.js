@@ -205,10 +205,10 @@ export function useBuzz() {
   const addStatus = async () => {
     if(program && publicKey){
       try{
-        setLoading(true)
+        //setLoading(true)
         setTransactionPending(true)
         const [profilePda] = findProgramAddressSync(
-          [utf8.encode('USER-STATE'),publicKey.toBuffer()],
+          [utf8.encode('USER_STATE'),publicKey.toBuffer()],
           program.programId
         )
         const [statusPda] = findProgramAddressSync(
@@ -220,17 +220,18 @@ export function useBuzz() {
           .accounts({
             userProfile : profilePda,
             statusAccount : statusPda,
-            authority : PublicKey,
+            authority : publicKey,
             SystemProgram : SystemProgram.programId
           })
           .rpc()
         }
       } catch (error){
+        setTransactionPending(false)
         console.log(error)
         setLoading(false)
       } finally {
         setTransactionPending(false)
-        setLoading(false)
+        /setLoading(false)
       }
     }
   }
@@ -256,6 +257,7 @@ export function useBuzz() {
     addFriendfun,
     addStatus,
     allUsers,
+    allStatus,
     loading,
     
   };
