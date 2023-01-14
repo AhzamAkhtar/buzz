@@ -3,7 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import { TODO_PROGRAM_PUBKEY } from "../constants";
 import todoIDL from "../constants/buzz.json";
 import { toast, ToastContainer } from "react-toastify";
-import { SystemProgram } from "@solana/web3.js";
+import { PublicKey, SystemProgram } from "@solana/web3.js";
 import { utf8 } from "@project-serum/anchor/dist/cjs/utils/bytes";
 import { findProgramAddressSync } from "@project-serum/anchor/dist/cjs/utils/pubkey";
 import {
@@ -20,6 +20,7 @@ export function useBuzz() {
   const anchorWallet = useAnchorWallet();
 
   const [allUsers, setAllUsers] = useState([]);
+  const [allStatus , setAllStatus] = useState([])
   const [initialized, setInitialized] = useState(false);
   const [transactionPending, setTransactionPending] = useState(false);
 
@@ -30,8 +31,9 @@ export function useBuzz() {
   const [profileUrl, setProfileUrl] = useState();
   const [country, setCountry] = useState();
   const [description, setDesription] = useState();
-  const [loading, setLoading] = useState(false);
-
+  const [loading, setLoading] = useState(false)
+  const [status , setStatus] = useState()
+  
   const showToast = () => {
     toast.success("Your Account Created Successfully !!", {
       toastId: "abx",
@@ -74,8 +76,11 @@ export function useBuzz() {
             setInitialized(true);
 
             const allUserAccount = await program.account.userProfile.all();
+            const allStatusAccount = await program.account.statusAccount.all()
             setAllUsers(allUserAccount);
+            setAllStatus(allStatusAccount)
             console.log(allUsers);
+            console.log(allStatus)
           } else {
             setInitialized(false);
           }
@@ -117,6 +122,9 @@ export function useBuzz() {
     console.log(e.target.value+"desc")
   };
 
+  const statusHandler = (e) => {
+    setStatus(e.target.value)
+  }
   const initializeUser = async () => {
     if (program && publicKey) {
       try {
@@ -188,9 +196,44 @@ export function useBuzz() {
       } catch (error) {
         console.log(error);
       } finally {
+        setStatus("")
+        setTransactionPending(false)
       }
     }
   };
+
+  const addStatus = async () => {
+    if(program && publicKey){
+      try{
+        setLoading(true)
+        setTransactionPending(true)
+        const [profilePda] = findProgramAddressSync(
+          [utf8.encode('USER-STATE'),publicKey.toBuffer()],
+          program.programId
+        )
+        const [statusPda] = findProgramAddressSync(
+          [utf8.encode("STATUS_STATE"),publicKey.toBuffer()],
+          program.programId
+        )
+        if (status) {
+          await program.methods.addStatus(status)
+          .accounts({
+            userProfile : profilePda,
+            statusAccount : statusPda,
+            authority : PublicKey,
+            SystemProgram : SystemProgram.programId
+          })
+          .rpc()
+        }
+      } catch (error){
+        console.log(error)
+        setLoading(false)
+      } finally {
+        setTransactionPending(false)
+        setLoading(false)
+      }
+    }
+  }
 
   return {
     initialized,
@@ -201,6 +244,8 @@ export function useBuzz() {
     profileUrl,
     country,
     description,
+    status,
+    statusHandler,
     nameHandler,
     ageHandler,
     genderHandler,
@@ -209,6 +254,7 @@ export function useBuzz() {
     descriptionHandler,
     initializeUser,
     addFriendfun,
+    addStatus,
     allUsers,
     loading,
     
