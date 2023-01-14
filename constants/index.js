@@ -1,3 +1,3 @@
 import { PublicKey } from "@solana/web3.js";
 
-export const TODO_PROGRAM_PUBKEY = new PublicKey("8NsABBp8MQeGNPBx7jnxnrFB655wy13QroRNaGpr4jUe");
+export const TODO_PROGRAM_PUBKEY = new PublicKey("E6hN6TRUGwCTH6D1qcni6YftncPnz8K7YGvAFoEUkz7o");

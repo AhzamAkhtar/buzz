@@ -35,7 +35,7 @@ export function useBuzz() {
   const [description, setDesription] = useState();
   const [loading, setLoading] = useState(false)
   const [status , setStatus] = useState()
-  
+  const [sname,setsname] = useState()
   const showToast = () => {
     toast.success("Your Account Created Successfully !!", {
       toastId: "abx",
@@ -79,13 +79,14 @@ export function useBuzz() {
           
             setInitialized(true);
             setCurrentUser(userAccount)
-            console.log(currentUser)
+            setsname(currentUser.name)
+            //console.log(currentUser)
             setStatusIndex(userAccount.statusIndex)
             const allUserAccount = await program.account.userProfile.all();
             const allStatusAccount = await program.account.statusAccount.all()
             setAllUsers(allUserAccount);
             setAllStatus(allStatusAccount)
-            console.log(allUsers);
+            //console.log(allUsers);
             console.log(allStatus)
           } else {
             setInitialized(false);
@@ -95,7 +96,7 @@ export function useBuzz() {
           setInitialized(false);
           setAllUsers([]);
         } finally {
-          console.log("Done");
+          //console.log("Done");
         }
       }
     };
@@ -221,8 +222,8 @@ export function useBuzz() {
           [utf8.encode("STATUS_STATE"),publicKey.toBuffer(),Uint8Array.from([statusindex])],
           program.programId
         )
-        if (status) {
-          await program.methods.addStatus(status)
+        if (status , sname) {
+          await program.methods.addStatus(status,sname)
           .accounts({
             userProfile : profilePda,
             statusAccount : statusPda,
@@ -247,6 +248,7 @@ export function useBuzz() {
     initialized,
     transactionPending,
     name,
+    sname,
     age,
     gender,
     profileUrl,
