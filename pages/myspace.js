@@ -1,7 +1,7 @@
 import Header from "../components/InsideComponent/Header";
 import { useBuzz } from "../hook/buzz";
 const MySpace = () => {
-  const { allStatus, statusHandler, status, addStatus , loading } = useBuzz();
+  const { allStatus, statusHandler, status, addStatus , loading ,currentUser } = useBuzz();
 
   return (
     <>
@@ -21,7 +21,7 @@ const MySpace = () => {
                 onChange = {statusHandler}
                 placeholder="whats going on .....!!"
                 type="text"
-                class="w-full bg-white rounded-full mt-2 border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-black py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                class="w-full bg-white rounded-full mt-2 border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-black py-1 px-3 leading-8 transition-colors duration-200 ease-in-out "
               />
               <button onClick={()=>addStatus()}
                class="bg-white text-black py-2 mx-3 px-4 rounded-3xl  items-center">
@@ -42,7 +42,7 @@ const MySpace = () => {
                       >
                         <div class="mt-2 text-center md:text-left">
                           <h3 class="text-red-500 text-md mb-2 title-font ">
-                            by username at 11:34
+                            {currentUser.name}
                           </h3>
                           <h3 class="text-black text-md  title-font ">
                             {item.account.status}

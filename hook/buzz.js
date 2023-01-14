@@ -19,12 +19,14 @@ export function useBuzz() {
   const { publicKey } = useWallet();
   const anchorWallet = useAnchorWallet();
 
+  const [currentUser , setCurrentUser] = useState([])
   const [allUsers, setAllUsers] = useState([]);
   const [allStatus , setAllStatus] = useState([])
   const [initialized, setInitialized] = useState(false);
   const [transactionPending, setTransactionPending] = useState(false);
 
-  const [followers, setFollowers] = useState(1);
+  const [followers, setFollowers] = useState(0);
+  const [statusindex , setStatusIndex] = useState(0)
   const [name, setName] = useState();
   const [age, setAge] = useState();
   const [gender, setGender] = useState();
@@ -70,11 +72,15 @@ export function useBuzz() {
           );
           const userAccount = await program.account.userProfile.fetch(
             profilePda
+            
           );
 
           if (userAccount) {
+          
             setInitialized(true);
-
+            setCurrentUser(userAccount)
+            console.log(currentUser)
+            setStatusIndex(userAccount.statusIndex)
             const allUserAccount = await program.account.userProfile.all();
             const allStatusAccount = await program.account.statusAccount.all()
             setAllUsers(allUserAccount);
@@ -212,7 +218,7 @@ export function useBuzz() {
           program.programId
         )
         const [statusPda] = findProgramAddressSync(
-          [utf8.encode("STATUS_STATE"),publicKey.toBuffer()],
+          [utf8.encode("STATUS_STATE"),publicKey.toBuffer(),Uint8Array.from([statusindex])],
           program.programId
         )
         if (status) {
@@ -230,6 +236,7 @@ export function useBuzz() {
         console.log(error)
         setLoading(false)
       } finally {
+        setStatus("")
         setTransactionPending(false)
         setLoading(false)
       }
@@ -259,6 +266,6 @@ export function useBuzz() {
     allUsers,
     allStatus,
     loading,
-    
+    currentUser
   };
 }
