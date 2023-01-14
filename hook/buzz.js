@@ -205,7 +205,7 @@ export function useBuzz() {
   const addStatus = async () => {
     if(program && publicKey){
       try{
-        //setLoading(true)
+        setLoading(true)
         setTransactionPending(true)
         const [profilePda] = findProgramAddressSync(
           [utf8.encode('USER_STATE'),publicKey.toBuffer()],
@@ -231,7 +231,7 @@ export function useBuzz() {
         setLoading(false)
       } finally {
         setTransactionPending(false)
-        /setLoading(false)
+        setLoading(false)
       }
     }
   }

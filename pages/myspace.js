@@ -1,7 +1,7 @@
 import Header from "../components/InsideComponent/Header";
 import { useBuzz } from "../hook/buzz";
 const MySpace = () => {
-  const { allStatus, statusHandler, status, addStatus } = useBuzz();
+  const { allStatus, statusHandler, status, addStatus , loading } = useBuzz();
 
   return (
     <>
@@ -41,10 +41,10 @@ const MySpace = () => {
                         class="lg:w-1/4 md:w-1/3 lg:mx-8 p-4 w-auto cursor-pointer shadow-lg mx-8 mb-5 bg-gray-200 rounded-lg"
                       >
                         <div class="mt-2 text-center md:text-left">
-                          <h3 class="text-red-500 text-md  title-font ">
-                            {item.account.status}
+                          <h3 class="text-red-500 text-md mb-2 title-font ">
+                            by username at 11:34
                           </h3>
-                          <h3 class="text-red-500 text-md  title-font ">
+                          <h3 class="text-black text-md  title-font ">
                             {item.account.status}
                           </h3>
                         </div>
@@ -55,9 +55,7 @@ const MySpace = () => {
               })}
             </div>
           </div>
-          <button class="flex mx-auto mt-16 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">
-            Button
-          </button>
+         
         </div>
       </section>
     </>
