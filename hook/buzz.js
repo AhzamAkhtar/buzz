@@ -20,6 +20,7 @@ export function useBuzz() {
   const anchorWallet = useAnchorWallet();
 
   const [currentUser , setCurrentUser] = useState([])
+  const [currentUserUrl , setCurrentUserUrl] = useState([])
   const [allUsers, setAllUsers] = useState([]);
   const [allFriend , setAllFriends] = useState([])
   const [allStatus , setAllStatus] = useState([])
@@ -79,7 +80,7 @@ export function useBuzz() {
           
             setInitialized(true);
             setCurrentUser(userAccount.name)
-            //setsname(currentUser.name)
+            setCurrentUserUrl(userAccount.profileUrl)
             console.log(currentUser)
             setFollowers(userAccount.totalFriend)
             setStatusIndex(userAccount.statusIndex)
@@ -225,8 +226,8 @@ export function useBuzz() {
           [utf8.encode("STATUS_STATE"),publicKey.toBuffer(),Uint8Array.from([statusindex])],
           program.programId
         )
-        if (status , currentUser) {
-          await program.methods.addStatus(status,currentUser)
+        if (status , currentUser , currentUserUrl) {
+          await program.methods.addStatus(status,currentUser,currentUserUrl)
           .accounts({
             userProfile : profilePda,
             statusAccount : statusPda,

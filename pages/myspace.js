@@ -163,7 +163,7 @@ const MySpace = () => {
                             </div>
                           </>
                         );
-                      }
+                      } 
                     })}
                   </div>
                 </div>
