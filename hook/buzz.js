@@ -86,7 +86,7 @@ export function useBuzz() {
             setStatusIndex(userAccount.statusIndex)
             const allUserAccount = await program.account.userProfile.all();
             const allStatusAccount = await program.account.statusAccount.all()
-            const allfriends = await program.account.friendAccount.all()
+            const allfriends = await program.account.friendAccount.all([authorFilter(publicKey.toString())])
             setAllUsers(allUserAccount);
             setAllStatus(allStatusAccount)
             setAllFriends(allfriends)
