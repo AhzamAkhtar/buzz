@@ -12,6 +12,7 @@ const MySpace = () => {
     loading,
     currentUser,
     nameForStatus,
+    allFriend,
   } = useBuzz();
 
   const timeConverter = (timeStamp) => {
@@ -50,9 +51,43 @@ const MySpace = () => {
                     "
         >
           <div>
-          <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-white">
-                   Your Friends
-                  </h1>
+            <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-white">
+              Your Friends
+            </h1>
+            <div class="container px-5 py-5 mx-auto">
+              <div class="flex flex-wrap -m-5 px-24 py-1 ">
+                {allFriend.map((item, keys) => {
+                  if (allFriend) {
+                    return (
+                      <>
+                        <div
+                          key={keys}
+                          class="lg:w-full md:w-1/3 lg:mx-8 p-4 w-auto cursor-pointer shadow-lg mx-8 mb-5 bg-gray-200 rounded-lg"
+                        >
+                          <div className="flex flex-wrap justify-start">
+                            <div className="w-6/12 sm:w-4/12 px-4">
+                              <img
+                                src={item.account.profileUrl}
+                                alt="..."
+                                className="shadow-lg rounded-full max-w-full h-auto align-middle border-none"
+                              />
+                            </div>
+                          </div>
+                          <div class="mt-2 text-center md:text-left">
+                            <h3 class="text-red-500 text-md mb-2 title-font ">
+                              Name - {item.account.name}
+                            </h3>
+                            <h3 class="text-black text-md  title-font ">
+                              Description - {item.account.description}
+                            </h3>
+                          </div>
+                        </div>
+                      </>
+                    );
+                  }
+                })}
+              </div>
+            </div>
           </div>
           <div>
             <section class="text-gray-600 body-font">
@@ -75,20 +110,23 @@ const MySpace = () => {
 
                     {loading ? (
                       <>
-                      <Image src="/yellowLoader.gif" width={50} height={50} className="m-auto mx-3"/>
+                        <Image
+                          src="/yellowLoader.gif"
+                          width={50}
+                          height={50}
+                          className="m-auto mx-3"
+                        />
                       </>
-                    ): (
+                    ) : (
                       <>
-                      <button
-                      onClick={() => addStatus()}
-                      class="bg-white text-black py-3 mx-3 px-4 rounded-3xl  items-center"
-                    >
-                      Post
-                    </button>
+                        <button
+                          onClick={() => addStatus()}
+                          class="bg-white text-black py-3 mx-3 px-4 rounded-3xl  items-center"
+                        >
+                          Post
+                        </button>
                       </>
                     )}
-
-                    
                   </div>
                   {/* <input class="lg:w-90 mt-2 h-70 leading-relaxed text-gray-500 bg-white rounded-full"></input> */}
                 </div>
@@ -105,6 +143,15 @@ const MySpace = () => {
                               key={keys}
                               class="lg:w-full md:w-1/3 lg:mx-8 p-4 w-auto cursor-pointer shadow-lg mx-8 mb-5 bg-gray-200 rounded-lg"
                             >
+                            <div className="flex flex-wrap justify-start">
+                            <div className="w-6/12 sm:w-4/12 px-4">
+                              <img
+                                src={item.account.profileUrl}
+                                alt="..."
+                                className="shadow-lg rounded-full max-w-full h-auto align-middle border-none"
+                              />
+                            </div>
+                          </div>
                               <div class="mt-2 text-center md:text-left">
                                 <h3 class="text-red-500 text-md mb-2 title-font ">
                                   Posted By {item.account.name}

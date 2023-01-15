@@ -21,6 +21,7 @@ export function useBuzz() {
 
   const [currentUser , setCurrentUser] = useState([])
   const [allUsers, setAllUsers] = useState([]);
+  const [allFriend , setAllFriends] = useState([])
   const [allStatus , setAllStatus] = useState([])
   const [initialized, setInitialized] = useState(false);
   const [transactionPending, setTransactionPending] = useState(false);
@@ -80,13 +81,16 @@ export function useBuzz() {
             setCurrentUser(userAccount.name)
             //setsname(currentUser.name)
             console.log(currentUser)
+            setFollowers(userAccount.totalFriend)
             setStatusIndex(userAccount.statusIndex)
             const allUserAccount = await program.account.userProfile.all();
             const allStatusAccount = await program.account.statusAccount.all()
+            const allfriends = await program.account.friendAccount.all()
             setAllUsers(allUserAccount);
             setAllStatus(allStatusAccount)
+            setAllFriends(allfriends)
             //console.log(allUsers);
-            console.log(allStatus)
+            console.log(allFriend)
           } else {
             setInitialized(false);
           }
@@ -172,7 +176,7 @@ export function useBuzz() {
     }
   };
 
-  const addFriendfun = async (namef, agef, genderf, urlf, walletadress) => {
+  const addFriendfun = async (namef, agef, genderf, urlf, descriptionf,countryf) => {
     if (program && publicKey) {
       try {
         setTransactionPending(true);
@@ -188,9 +192,9 @@ export function useBuzz() {
           ],
           program.programId
         );
-        if (namef && genderf && agef && urlf) {
+        if (namef && genderf && agef && urlf && descriptionf && countryf) {
           await program.methods
-            .addFriend(namef, genderf, agef, urlf, walletadress)
+            .addFriend(namef, genderf, agef, urlf, descriptionf , countryf)
             .accounts({
               userProfile: profilePda,
               addFriend: addfriend,
@@ -264,6 +268,7 @@ export function useBuzz() {
     addFriendfun,
     addStatus,
     allUsers,
+    allFriend,
     allStatus,
     loading,
     currentUser

@@ -6,7 +6,7 @@ import { BsArrowRight } from "react-icons/bs";
 import { BsArrowLeft } from "react-icons/bs";
 import { IoMdPersonAdd } from "react-icons/io";
 const main = () => {
-  const { allUsers } = useBuzz();
+  const { allUsers  , addFriendfun} = useBuzz();
   const [lowerBound, setLowerBound] = useState(0);
   const [upperBound, setUpperBound] = useState(3);
   
@@ -57,7 +57,14 @@ const main = () => {
                           </h2>
                           <button class="bg-black py-1 px-3 rounded-full inline-flex items-center">
 
-                          <IoMdPersonAdd className="text-2xl text-white" />
+                          <IoMdPersonAdd onClick={()=> addFriendfun(
+                            item.account.name,
+                            item.account.gender,
+                            item.account.age,
+                            item.account.profileUrl,
+                            item.account.description,
+                            item.account.country
+                          )} className="text-2xl text-white" />
                           </button>
                         </div>
                         <h2 class=" text-gray-900 title-font text-sm mt-2 font-sans">
