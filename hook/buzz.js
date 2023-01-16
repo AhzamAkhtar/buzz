@@ -24,6 +24,7 @@ export function useBuzz() {
   const [allUsers, setAllUsers] = useState([]);
   const [allFriend , setAllFriends] = useState([])
   const [allStatus , setAllStatus] = useState([])
+  const [myStatus , setMyStatus] = useState([])
   const [initialized, setInitialized] = useState(false);
   const [transactionPending, setTransactionPending] = useState(false);
 
@@ -86,12 +87,14 @@ export function useBuzz() {
             setStatusIndex(userAccount.statusIndex)
             const allUserAccount = await program.account.userProfile.all();
             const allStatusAccount = await program.account.statusAccount.all()
+            const myStatus = await program.account.statusAccount.all([authorFilter(publicKey.toString())])
             const allfriends = await program.account.friendAccount.all([authorFilter(publicKey.toString())])
             setAllUsers(allUserAccount);
             setAllStatus(allStatusAccount)
             setAllFriends(allfriends)
+            setMyStatus(myStatus)
             //console.log(allUsers);
-            console.log(allFriend)
+            console.log(myStatus)
           } else {
             setInitialized(false);
           }
@@ -271,6 +274,7 @@ export function useBuzz() {
     allUsers,
     allFriend,
     allStatus,
+    myStatus,
     loading,
     currentUser
   };
