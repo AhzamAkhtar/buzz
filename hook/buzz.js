@@ -335,6 +335,7 @@ export function useBuzz() {
     allFriend,
     allStatus,
     myStatus,
+    allvideo,
     loading,
     currentUser
   };
