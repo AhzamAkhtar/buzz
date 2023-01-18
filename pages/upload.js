@@ -143,23 +143,7 @@ const upload = () => {
           })}
         </>
       )}
-      {/* <input
-        value={videoDiscription}
-        onChange={videoDiscriptionHandler}
-        type="text"
-        placeholder="desc"
-      ></input>
 
-      <input
-        value={videoUrl}
-        onChange={videoUrlHandler}
-        type="text"
-        placeholder="url"
-      ></input>
-
-      <button onClick={()=> addVideo()}>
-        Upload
-      </button> */}
     </>
   );
 };
