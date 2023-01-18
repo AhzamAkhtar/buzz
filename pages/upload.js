@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useBuzz } from "../hook/buzz";
 import { AiOutlinePlus } from "react-icons/ai";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Image from "next/image";
 const upload = () => {
   const {
@@ -22,6 +24,17 @@ const upload = () => {
   };
   return (
     <>
+     <ToastContainer
+        position="bottom-left"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <div class="p-2 w-full flex flex-col justify-end items-end ">
         <button
           onClick={() => setUpload(true)}

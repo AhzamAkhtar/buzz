@@ -58,6 +58,21 @@ export function useBuzz() {
     });
   };
 
+  const showToastForVideo = () => {
+    toast.success("Your Account Created Successfully !!", {
+      toastId: "abx",
+
+      position: "bottom-left",
+      autoClose: 4000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
+
   const program = useMemo(() => {
     if (anchorWallet) {
       const provider = new anchor.AnchorProvider(
@@ -292,6 +307,10 @@ export function useBuzz() {
             SystemProgram : SystemProgram.programId
           })
           .rpc()
+          showToastForVideo()
+          setTimeout(()=>{
+            window.location.reload()
+          },3000)
         }
       } catch (error) {
         console.log(error)
