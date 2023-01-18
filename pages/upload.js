@@ -5,6 +5,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Image from "next/image";
 import { BsArrow90DegLeft } from "react-icons/bs";
+import Header from "../components/InsideComponent/Header";
 const upload = () => {
   const {
     addVideo,
@@ -45,6 +46,7 @@ const upload = () => {
         draggable
         pauseOnHover
       />
+      <Header/>
       <div class="p-2 w-full flex flex-col justify-end items-end ">
         {upload ? (
           <>
@@ -159,9 +161,21 @@ const upload = () => {
                     className="w-1/2 aspect-square  object-fill rounded-3xl"
                     src={item.account.content}
                   ></iframe>
+                  <div className="flex flex-wrap justify-start">
+                    <div className="w-6/12 sm:w-4/12 px-4">
+                      <img
+                        src={item.account.profileUrl}
+                        alt="..."
+                        className="shadow-lg rounded-full max-w-full h-auto align-middle border-none"
+                      />
+                    </div>
+                    <div class="mt-2 text-center md:text-left">
+                    <h3 class="text-red-500 text-md mb-2 mt-5 title-font ">
+                      {item.account.userName}
+                    </h3>
+                  </div>
+                  </div>
                   
-                  <h1 className="text-white">{`Uploaded By ${item.account.userName}`}</h1>
-                
                 </div>
               </>
             );

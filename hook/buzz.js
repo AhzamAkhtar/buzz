@@ -298,8 +298,8 @@ export function useBuzz() {
           [utf8.encode("VIDEO_STATE") , publicKey.toBuffer(),Uint8Array.from([videoIndex])],
           program.programId
         )
-        if(videoUrl,currentUser,videoDiscription){
-          await program.methods.createVideo(videoUrl,currentUser,videoDiscription)
+        if(videoUrl,currentUser,videoDiscription,currentUserUrl){
+          await program.methods.createVideo(videoUrl,currentUser,videoDiscription,currentUserUrl)
           .accounts({
             userProfile : profilePda,
             videoAccount : videoPda,
