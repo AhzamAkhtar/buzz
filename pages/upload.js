@@ -33,6 +33,28 @@ const upload = () => {
 
       {upload ? (
         <>
+        <section class="text-gray-600 body-font relative my-18" id='login'>
+        <div class="container px-5 py-24 mx-auto flex sm:flex-nowrap flex-wrap">
+          <div class="lg:w-2/3 md:w-1/2 bg-gray-300 rounded-lg overflow-hidden sm:mr-10 p-10 flex items-end justify-start relative">
+            <div
+             
+              width="100%"
+              height="100%"
+              class="absolute inset-0 bg-black"
+              frameborder="0"
+              title="map"
+              marginheight="0"
+              marginwidth="0"
+              scrolling="no"
+              src="https://maps.google.com/maps?width=100%&amp;height=600&amp;hl=en&amp;q=%C4%B0zmir+(My%20Business%20Name)&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed"
+            >
+            <h2 className='flex flex-col items-end  justify-end mx-10 text-white text-8xl mt-5'>Upload</h2>
+              <h2 className='flex flex-col items-end justify-end mx-10 text-white text-6xl mt-5'>your videos</h2>
+              <h2 className='flex flex-col items-end justify-end mx-10 text-yellow-400 text-5xl mt-5'>start your new journey !!!!</h2>
+              
+            </div>
+           
+          </div>
           <div class="lg:w-2/6 md:w-1/2 bg-black rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10  md:mt-0 justify-center">
             <h2 class="text-white text-lg font-medium title-font mb-5">
               Upload
@@ -45,7 +67,7 @@ const upload = () => {
                 value={videoDiscription}
                 onChange={videoDiscriptionHandler}
                 type="text"
-                class="w-full bg-white rounded-full border border-gray-300 focus:ring-8 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                class="w-full mt-2 bg-white rounded-2xl border border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
               />
             </div>
             <div class="relative mb-4">
@@ -56,7 +78,7 @@ const upload = () => {
                 value={videoUrl}
                 onChange={videoUrlHandler}
                 type="text"
-                class="w-full bg-white border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out rounded-full"
+                class="w-full mt-2 bg-white border text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out rounded-2xl"
               />
             </div>
             {loading ? (
@@ -67,7 +89,7 @@ const upload = () => {
               <>
                 <button
                   onClick={() => uploadVideo()}
-                  class="text-white bg-black border-0 py-2 px-8 focus:outline-none hover:bg-gray-600 rounded-full text-lg"
+                  class="bg-white text-black border-0 py-2 px-8 focus:outline-none rounded-full text-lg"
                 >
                   Upload
                 </button>
@@ -78,6 +100,8 @@ const upload = () => {
               Literally you probably haven't heard of them jean shorts.
             </p>
           </div>
+          </div>
+          </section>
         </>
       ) : (
         <>
