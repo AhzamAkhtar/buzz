@@ -25,11 +25,13 @@ export function useBuzz() {
   const [allFriend , setAllFriends] = useState([])
   const [allStatus , setAllStatus] = useState([])
   const [myStatus , setMyStatus] = useState([])
+  const [allvideo , setAllVideo] = useState([])
   const [initialized, setInitialized] = useState(false);
   const [transactionPending, setTransactionPending] = useState(false);
 
   const [followers, setFollowers] = useState(0);
   const [statusindex , setStatusIndex] = useState(0)
+  const [videoIndex,setVideoIndex] = useState(1)
   const [name, setName] = useState();
   const [age, setAge] = useState();
   const [gender, setGender] = useState();
@@ -38,6 +40,10 @@ export function useBuzz() {
   const [description, setDesription] = useState();
   const [loading, setLoading] = useState(false)
   const [status , setStatus] = useState()
+
+  const [videoDiscription , setVideoDiscription] = useState()
+  const [videoUrl , setVideoUrl] = useState()
+
   const showToast = () => {
     toast.success("Your Account Created Successfully !!", {
       toastId: "abx",
@@ -85,16 +91,19 @@ export function useBuzz() {
             console.log(currentUser)
             setFollowers(userAccount.totalFriend)
             setStatusIndex(userAccount.statusIndex)
+            setVideoIndex(userAccount.videoIndex)
             const allUserAccount = await program.account.userProfile.all();
             const allStatusAccount = await program.account.statusAccount.all()
             const myStatus = await program.account.statusAccount.all([authorFilter(publicKey.toString())])
             const allfriends = await program.account.friendAccount.all([authorFilter(publicKey.toString())])
+            const allVideo = await program.account.videoAccount.all()
             setAllUsers(allUserAccount);
             setAllStatus(allStatusAccount)
             setAllFriends(allfriends)
             setMyStatus(myStatus)
+            setAllVideo(allVideo)
             //console.log(allUsers);
-            console.log(myStatus)
+            console.log(allvideo)
           } else {
             setInitialized(false);
           }
@@ -139,6 +148,15 @@ export function useBuzz() {
   const statusHandler = (e) => {
     setStatus(e.target.value)
   }
+
+  const videoDiscriptionHandler = (e) => {
+    setVideoDiscription(e.target.value)
+  }
+
+  const videoUrlHandler = (e) => {
+    setVideoUrl(e.target.value)
+  }
+
   const initializeUser = async () => {
     if (program && publicKey) {
       try {
@@ -251,6 +269,43 @@ export function useBuzz() {
     }
   }
 
+  const addVideo = async () => {
+    //const randomKey = anchor.web3.Keypair.generate().publicKey
+    if(program && publicKey){
+      try{
+        setLoading(true)
+        setTransactionPending(true)
+        const [profilePda] = findProgramAddressSync(
+          [utf8.encode("USER_STATE"),publicKey.toBuffer()],
+          program.programId
+        )
+        const [videoPda] = findProgramAddressSync(
+          [utf8.encode("VIDEO_STATE") , publicKey.toBuffer(),Uint8Array.from([videoIndex])],
+          program.programId
+        )
+        if(videoUrl,currentUser,videoDiscription){
+          await program.methods.createVideo(videoUrl,currentUser,videoDiscription)
+          .accounts({
+            userProfile : profilePda,
+            videoAccount : videoPda,
+            authority : publicKey,
+            SystemProgram : SystemProgram.programId
+          })
+          .rpc()
+        }
+      } catch (error) {
+        console.log(error)
+        setLoading(false)
+        setTransactionPending(false)
+      }  finally {
+        setLoading(false)
+        setTransactionPending(false)
+        setVideoDiscription("")
+        setVideoUrl("")
+      }
+    }
+  }
+
   return {
     initialized,
     transactionPending,
@@ -261,6 +316,8 @@ export function useBuzz() {
     country,
     description,
     status,
+    videoDiscription,
+    videoUrl,
     statusHandler,
     nameHandler,
     ageHandler,
@@ -268,9 +325,12 @@ export function useBuzz() {
     profileUrlHandler,
     countryHandler,
     descriptionHandler,
+    videoDiscriptionHandler,
+    videoUrlHandler,
     initializeUser,
     addFriendfun,
     addStatus,
+    addVideo,
     allUsers,
     allFriend,
     allStatus,
