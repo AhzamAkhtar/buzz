@@ -4,7 +4,9 @@ import { AiOutlinePlus } from "react-icons/ai";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Image from "next/image";
+import {BsArrow90DegLeft} from 'react-icons/bs'
 const upload = () => {
+  const [icon , setIcon] = useState('AiOutlinePlus')
   const {
     addVideo,
     videoDiscription,
@@ -26,9 +28,11 @@ const upload = () => {
   const switchView = () => {
     if(upload==false){
       setUpload(true)
+      setIcon('AiOutlinePlus')
     }
     if(upload==true){
       setUpload(false)
+      setIcon('BsArrow90DegLeft')
     }
   }
   return (
@@ -45,12 +49,26 @@ const upload = () => {
         pauseOnHover
       />
       <div class="p-2 w-full flex flex-col justify-end items-end ">
+      {upload ? (
+        <>
         <button
           onClick={() => switchView()}
           class="text-black bg-white py-2 px-8 mt-5 mr-5 rounded-full"
         >
-          <AiOutlinePlus />
+          <BsArrow90DegLeft/>
         </button>
+        </>
+      ): (
+        <>
+        <button
+          onClick={() => switchView()}
+          class="text-black bg-white py-2 px-8 mt-5 mr-5 rounded-full"
+        >
+          <AiOutlinePlus/>
+        </button>
+        </>
+      )}
+      
       </div>
 
       {upload ? (
