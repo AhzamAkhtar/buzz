@@ -22,6 +22,15 @@ const upload = () => {
       setUpload(false);
     }
   };
+
+  const switchView = () => {
+    if(upload==false){
+      setUpload(true)
+    }
+    if(upload==true){
+      setUpload(false)
+    }
+  }
   return (
     <>
      <ToastContainer
@@ -37,7 +46,7 @@ const upload = () => {
       />
       <div class="p-2 w-full flex flex-col justify-end items-end ">
         <button
-          onClick={() => setUpload(true)}
+          onClick={() => switchView()}
           class="text-black bg-white py-2 px-8 mt-5 mr-5 rounded-full"
         >
           <AiOutlinePlus />
