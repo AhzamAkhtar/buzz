@@ -47,6 +47,7 @@ export function useBuzz() {
   const [peopleLoading, setPeopleLoading] = useState(false);
   const [videoLoading, setVideoLoading] = useState(false);
   const [statusLoading, setStatusLoading] = useState(false);
+  const [friendLoading , setFriendLoading] = useState(false)
 
   const showToast = () => {
     toast.success("Your Account Created Successfully !!", {
@@ -124,16 +125,18 @@ export function useBuzz() {
             setAllStatus(allStatusAccount);
             setStatusLoading(false);
 
-            const myStatus = await program.account.statusAccount.all([
-              authorFilter(publicKey.toString()),
-            ]);
+            setFriendLoading(true)
             const allfriends = await program.account.friendAccount.all([
               authorFilter(publicKey.toString()),
             ]);
-
             setAllFriends(allfriends);
+            setFriendLoading(false)
+
+            const myStatus = await program.account.statusAccount.all([
+              authorFilter(publicKey.toString()),
+            ]);
             setMyStatus(myStatus);
-            //console.log(allUsers);
+
             console.log(allvideo);
           } else {
             setInitialized(false);
@@ -397,6 +400,7 @@ export function useBuzz() {
     videoLoading,
     peopleLoading,
     statusLoading,
+    friendLoading,
     currentUser,
   };
 }

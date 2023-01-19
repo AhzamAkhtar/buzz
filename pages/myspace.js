@@ -9,11 +9,10 @@ const MySpace = () => {
     status,
     addStatus,
     loading,
-    currentUser,
-    nameForStatus,
     allFriend,
     myStatus,
     statusLoading,
+    friendLoading,
   } = useBuzz();
   const [showWhichStatus, setShowWhichStatus] = useState(true);
   const [time, setTime] = useState();
@@ -59,36 +58,44 @@ const MySpace = () => {
             </h1>
             <div class="container px-5 py-5 mx-auto">
               <div class="flex flex-wrap -m-5 px-24 py-1 ">
-                {allFriend.map((item, keys) => {
-                  if (allFriend) {
-                    return (
-                      <>
-                        <div
-                          key={keys}
-                          class="lg:w-full md:w-1/3 lg:mx-8 p-4 w-auto cursor-pointer shadow-lg mx-8 mb-5 bg-gray-200 rounded-lg"
-                        >
-                          <div className="flex flex-wrap justify-start">
-                            <div className="w-6/12 sm:w-4/12 px-4">
-                              <img
-                                src={item.account.profileUrl}
-                                alt="..."
-                                className="shadow-lg rounded-full max-w-full h-auto align-middle border-none"
-                              />
+                {friendLoading ? (
+                  <>
+                  <Image src="/yellowLoader.gif" width={50} height={50} className="m-auto"/>
+                  </>
+                ) : (
+                  <>
+                    {allFriend.map((item, keys) => {
+                      if (allFriend) {
+                        return (
+                          <>
+                            <div
+                              key={keys}
+                              class="lg:w-full md:w-1/3 lg:mx-8 p-4 w-auto cursor-pointer shadow-lg mx-8 mb-5 bg-gray-200 rounded-lg"
+                            >
+                              <div className="flex flex-wrap justify-start">
+                                <div className="w-6/12 sm:w-4/12 px-4">
+                                  <img
+                                    src={item.account.profileUrl}
+                                    alt="..."
+                                    className="shadow-lg rounded-full max-w-full h-auto align-middle border-none"
+                                  />
+                                </div>
+                              </div>
+                              <div class="mt-2 text-center md:text-left">
+                                <h3 class="text-red-500 text-md mb-2 title-font ">
+                                  Name - {item.account.name}
+                                </h3>
+                                <h3 class="text-black text-md  title-font ">
+                                  Description - {item.account.description}
+                                </h3>
+                              </div>
                             </div>
-                          </div>
-                          <div class="mt-2 text-center md:text-left">
-                            <h3 class="text-red-500 text-md mb-2 title-font ">
-                              Name - {item.account.name}
-                            </h3>
-                            <h3 class="text-black text-md  title-font ">
-                              Description - {item.account.description}
-                            </h3>
-                          </div>
-                        </div>
-                      </>
-                    );
-                  }
-                })}
+                          </>
+                        );
+                      }
+                    })}
+                  </>
+                )}
               </div>
             </div>
           </div>
@@ -154,7 +161,12 @@ const MySpace = () => {
                       <>
                         {statusLoading ? (
                           <>
-                          <Image src="/yellowLoader.gif" width={50} height={50} className="m-auto"/>
+                            <Image
+                              src="/yellowLoader.gif"
+                              width={50}
+                              height={50}
+                              className="m-auto"
+                            />
                           </>
                         ) : (
                           <>
@@ -239,7 +251,6 @@ const MySpace = () => {
           </div>
         </div>
       </div>
-      
     </>
   );
 };
