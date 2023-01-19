@@ -16,6 +16,7 @@ const upload = () => {
     allvideo,
     loading,
     transactionPending,
+    videoLoading,
   } = useBuzz();
   const [upload, setUpload] = useState(false);
   const uploadVideo = () => {
@@ -151,6 +152,13 @@ const upload = () => {
         </>
       ) : (
         <>
+        {videoLoading ? (
+          <>
+          <Image src="/yellowLoader.gif" width={50} height={50} className="m-auto"/>
+          </>
+        ): (
+          <>
+
           {allvideo.map((item) => {
             return (
               <>
@@ -180,6 +188,8 @@ const upload = () => {
               </>
             );
           })}
+          </>
+        )}
         </>
       )}
     </>

@@ -44,6 +44,9 @@ export function useBuzz() {
   const [videoDiscription , setVideoDiscription] = useState()
   const [videoUrl , setVideoUrl] = useState()
 
+  const [peopleLoading , setPeopleLoading] = useState(false)
+  const [videoLoading , setVideoLoading] = useState(false)
+
   const showToast = () => {
     toast.success("Your Account Created Successfully !!", {
       toastId: "abx",
@@ -107,16 +110,26 @@ export function useBuzz() {
             setFollowers(userAccount.totalFriend)
             setStatusIndex(userAccount.statusIndex)
             setVideoIndex(userAccount.videoIndex)
+
+            setPeopleLoading(true)
             const allUserAccount = await program.account.userProfile.all();
+            setAllUsers(allUserAccount);
+            setPeopleLoading(false)
+            
+            setVideoLoading(true)
+            const allVideo = await program.account.videoAccount.all()
+            setAllVideo(allVideo)
+            setVideoLoading(false)
+            
             const allStatusAccount = await program.account.statusAccount.all()
             const myStatus = await program.account.statusAccount.all([authorFilter(publicKey.toString())])
             const allfriends = await program.account.friendAccount.all([authorFilter(publicKey.toString())])
-            const allVideo = await program.account.videoAccount.all()
-            setAllUsers(allUserAccount);
+
+
+            
             setAllStatus(allStatusAccount)
             setAllFriends(allfriends)
             setMyStatus(myStatus)
-            setAllVideo(allVideo)
             //console.log(allUsers);
             console.log(allvideo)
           } else {
@@ -356,6 +369,7 @@ export function useBuzz() {
     myStatus,
     allvideo,
     loading,
+    videoLoading,
     currentUser
   };
 }
