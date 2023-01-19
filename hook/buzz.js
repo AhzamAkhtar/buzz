@@ -120,7 +120,7 @@ export function useBuzz() {
             const allVideo = await program.account.videoAccount.all()
             setAllVideo(allVideo)
             setVideoLoading(false)
-            
+
             const allStatusAccount = await program.account.statusAccount.all()
             const myStatus = await program.account.statusAccount.all([authorFilter(publicKey.toString())])
             const allfriends = await program.account.friendAccount.all([authorFilter(publicKey.toString())])
@@ -370,6 +370,7 @@ export function useBuzz() {
     allvideo,
     loading,
     videoLoading,
+    peopleLoading,
     currentUser
   };
 }
