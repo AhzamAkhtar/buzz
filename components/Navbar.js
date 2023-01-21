@@ -33,10 +33,10 @@ const Navbar = () => {
             >
               <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
             </svg>
-            <h1 class="ml-3 text-4xl text-white">buzz.sol</h1>
+            <h1 class="ml-3 text-4xl text-white">Buzz</h1>
           </a>
           <nav class="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400	flex flex-wrap items-center text-base justify-center">
-            <a class="mr-5 hover:text-white text-xl">First Link</a>
+            <a class="mr-5 hover:text-white text-xl"></a>
                
           </nav>
           <WalletMultiButtonDynamic

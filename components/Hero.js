@@ -83,7 +83,7 @@ const Hero = () => {
                       onClick={() => turnLoginTrue()}
                       class={`md:ml-5 bg-white text-black py-4 px-10 rounded-3xl inline-flex items-center mx-10 mt-10 `}
                     >
-                      <span>LOGIN</span>
+                      <span className="text-xl">Create Your Account</span>
                       <CiLogin className="ml-1 w-8 text-3xl" />
                     </button>
                   </>

@@ -13,7 +13,7 @@ export function NavbarUtil() {
         setWord("DIVE IN");
       }
       if (initialized == false) {
-        setWord("LOGIN");
+        setWord("Create Your Account");
       }
       if(router.asPath=="/main" || router.asPath=="/upload" || router.asPath=="/myspace"){
         setWord("HOME")

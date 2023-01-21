@@ -63,7 +63,7 @@ const Login = () => {
               src="https://maps.google.com/maps?width=100%&amp;height=600&amp;hl=en&amp;q=%C4%B0zmir+(My%20Business%20Name)&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed"
             >
             <h2 className='flex justify-left mx-10 text-white text-9xl mt-5'>a</h2>
-              <h2 className='flex justify-left mx-10 text-yellow-400 text-9xl mt-5'>new</h2>
+              <h2 className='flex justify-left mx-10 text-yellow-400 text-9xl mt-5'>decentralized</h2>
               <h2 className='flex justify-left mx-10 text-white text-9xl mt-5'>way to</h2>
               <h2 className='flex justify-left mx-10 text-yellow-400 text-9xl mt-5'>socialize ...... !!</h2>
             </div>
@@ -74,7 +74,7 @@ const Login = () => {
               CREATE YOUR ACCOUNT
             </h2>
             <p class="leading-relaxed mb-5 text-white">
-              Post-ironic portland shabby chic echo park, banjo fashion axe
+              Enter some basic details to create your account ....
             </p>
             <div class="relative mb-4">
               <label for="name" class="leading-7 text-sm text-white">
