@@ -48,9 +48,7 @@ const upload = () => {
         pauseOnHover
       />
       <Header />
-      <h2 className="flex flex-col text-3xl justify-center items-center">
-        Explore !!!
-      </h2>
+
       <div class="p-2 w-full flex flex-col justify-end items-end ">
         {upload ? (
           <>
@@ -96,9 +94,9 @@ const upload = () => {
                   />
                 </div>
                 <div
-                  width="100%"
+                  width="50%"
                   height="100%"
-                  class="absolute inset-0 bg-black"
+                  class="absolute inset-0 bg-gray-900"
                   frameborder="0"
                   title="map"
                   marginheight="0"
@@ -171,13 +169,16 @@ const upload = () => {
         </>
       ) : (
         <>
+          <h2 className="flex flex-col text-3xl justify-center items-center">
+            Explore !!!
+          </h2>
           {videoLoading ? (
             <>
               <Image
                 src="/yellowLoader.gif"
                 width={50}
                 height={50}
-                className="m-auto"
+                className="m-auto mt-10"
               />
             </>
           ) : (

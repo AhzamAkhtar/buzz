@@ -143,13 +143,13 @@ const MySpace = () => {
                       onClick={() => setShowWhichStatus(true)}
                       class={`bg-white text-black py-4 px-10 rounded-3xl inline-flex items-center mx-10 mt-10 `}
                     >
-                      <span>ALL Status</span>
+                      <span>ALL Thoughts</span>
                     </button>
                     <button
                       onClick={() => setShowWhichStatus(false)}
                       class={`bg-white text-black py-4 px-10 rounded-3xl inline-flex items-center mx-10 mt-10 `}
                     >
-                      <span>My Status</span>
+                      <span>My Thoughts</span>
                     </button>
                   </div>
 

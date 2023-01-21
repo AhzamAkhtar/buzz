@@ -26,7 +26,7 @@ const main = () => {
         AAAA
       </button> */}
       <section class="text-gray-600 body-font mx-5">
-        <div class="container px-5 py-5 mx-auto ">
+        <div class="container px-20 py-5 mx-auto ">
           <div class="flex flex-wrap -m-5 px-24 py-1 sm:px-2 ">
             {}
             {allUsers.map((item, keys) => {
@@ -41,7 +41,7 @@ const main = () => {
                       <>
                         <div
                           key={keys}
-                          class="lg:w-1/4 md:w-1/3 lg:mx-8 p-4 w-auto cursor-pointer shadow-lg mx-8 mb-5 bg-gray-200 rounded-lg"
+                          class="lg:w-1/4 md:w-1/3 lg:mx-8 p-4 w-auto px-10 cursor-pointer shadow-lg mx-8 mb-5 bg-gray-200 rounded-lg"
                         >
                           <a class="block relative rounded overflow-hidden">
                             <img
