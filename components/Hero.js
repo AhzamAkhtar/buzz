@@ -44,7 +44,7 @@ const Hero = () => {
           }}
         >
           <Image
-            src="/pic.jpg"
+            src="/2.jpg"
             className="rounded-3xl"
             alt="Mountains with snow"
             layout="fill"

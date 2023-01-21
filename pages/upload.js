@@ -47,8 +47,10 @@ const upload = () => {
         draggable
         pauseOnHover
       />
-      <Header/>
-      <h2 className="flex flex-col text-3xl justify-center items-center">Explore !!!</h2>
+      <Header />
+      <h2 className="flex flex-col text-3xl justify-center items-center">
+        Explore !!!
+      </h2>
       <div class="p-2 w-full flex flex-col justify-end items-end ">
         {upload ? (
           <>
@@ -76,7 +78,23 @@ const upload = () => {
         <>
           <section class="text-gray-600 body-font relative my-18" id="login">
             <div class="container px-5 py-24 mx-auto flex sm:flex-nowrap flex-wrap">
-              <div class="lg:w-2/3 md:w-1/2 bg-gray-300 rounded-lg overflow-hidden sm:mr-10 p-10 flex items-end justify-start relative">
+              <div class="lg:w-2/3 md:w-1/2  bg-[url('/3.jpg')] rounded-lg overflow-hidden sm:mr-10 p-10 flex items-end justify-start relative">
+                <div
+                  style={{
+                    zIndex: -1,
+                    position: "fixed",
+                    width: "100vw",
+                    height: "100vh",
+                  }}
+                >
+                  <Image
+                    src="/3.jpg"
+                    className="rounded-3xl"
+                    alt="Mountains with snow"
+                    layout="fill"
+                    objectFit="cover"
+                  />
+                </div>
                 <div
                   width="100%"
                   height="100%"
@@ -86,15 +104,14 @@ const upload = () => {
                   marginheight="0"
                   marginwidth="0"
                   scrolling="no"
-                  src="https://maps.google.com/maps?width=100%&amp;height=600&amp;hl=en&amp;q=%C4%B0zmir+(My%20Business%20Name)&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed"
                 >
-                  <h2 className="flex flex-col items-end  justify-end mx-10 text-white text-8xl mt-5">
+                  <h2 className="flex flex-col items-end mx-10  justify-end text-white text-8xl mt-10">
                     Upload
                   </h2>
-                  <h2 className="flex flex-col items-end justify-end mx-10 text-white text-6xl mt-5">
+                  <h2 className="flex flex-col items-end mx-10 justify-end text-white text-6xl mt-5">
                     your videos
                   </h2>
-                  <h2 className="flex flex-col items-end justify-end mx-10 text-yellow-400 text-5xl mt-5">
+                  <h2 className="flex flex-col items-end mx-10 justify-end text-yellow-400 text-5xl mt-5">
                     start your new journey !!!!
                   </h2>
                 </div>
@@ -154,44 +171,47 @@ const upload = () => {
         </>
       ) : (
         <>
-        {videoLoading ? (
-          <>
-          <Image src="/yellowLoader.gif" width={50} height={50} className="m-auto"/>
-          </>
-        ): (
-          <>
-
-          {allvideo.map((item) => {
-            return (
-              <>
-                <div className="flex flex-col justify-center items-center mt-5">
-                  <iframe
-                    allow="autoplay; gyroscope;"
-                    allowfullscreen
-                    className="w-1/2 aspect-square  object-fill rounded-3xl"
-                    src={item.account.content}
-                  ></iframe>
-                  <div className="flex flex-wrap justify-start">
-                    <div className="w-6/12 sm:w-4/12 px-4">
-                      <img
-                        src={item.account.profileUrl}
-                        alt="..."
-                        className="shadow-lg rounded-full max-w-full h-auto align-middle border-none"
-                      />
+          {videoLoading ? (
+            <>
+              <Image
+                src="/yellowLoader.gif"
+                width={50}
+                height={50}
+                className="m-auto"
+              />
+            </>
+          ) : (
+            <>
+              {allvideo.map((item) => {
+                return (
+                  <>
+                    <div className="flex flex-col justify-center items-center mt-5">
+                      <iframe
+                        allow="autoplay; gyroscope;"
+                        allowfullscreen
+                        className="w-1/2 aspect-square  object-fill rounded-3xl"
+                        src={item.account.content}
+                      ></iframe>
+                      <div className="flex flex-wrap justify-start">
+                        <div className="w-6/12 sm:w-4/12 px-4">
+                          <img
+                            src={item.account.profileUrl}
+                            alt="..."
+                            className="shadow-lg rounded-full max-w-full h-auto align-middle border-none"
+                          />
+                        </div>
+                        <div class="mt-2 text-center md:text-left">
+                          <h3 class="text-red-500 text-md mb-2 mt-5 title-font ">
+                            {item.account.userName}
+                          </h3>
+                        </div>
+                      </div>
                     </div>
-                    <div class="mt-2 text-center md:text-left">
-                    <h3 class="text-red-500 text-md mb-2 mt-5 title-font ">
-                      {item.account.userName}
-                    </h3>
-                  </div>
-                  </div>
-                  
-                </div>
-              </>
-            );
-          })}
-          </>
-        )}
+                  </>
+                );
+              })}
+            </>
+          )}
         </>
       )}
     </>
