@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import Header from "../components/InsideComponent/Header";
-import { useBuzz } from "../hook/buzz";
+import { useBuzz } from "../Connector/buzz";
 import { BsArrowRight } from "react-icons/bs";
 import { BsArrowLeft } from "react-icons/bs";
 import { IoMdPersonAdd } from "react-icons/io";

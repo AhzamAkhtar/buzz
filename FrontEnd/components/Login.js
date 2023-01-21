@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { useState } from "react";
-import { useBuzz } from "../hook/buzz";
+import { useBuzz } from "../Connector/buzz";
 import { LoginUtil } from './LoginUtil';
 import { Link } from 'react-scroll';
 import { toast, ToastContainer } from "react-toastify";

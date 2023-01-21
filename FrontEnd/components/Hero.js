@@ -2,7 +2,7 @@ import Image from "next/image";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import { CiLogin } from "react-icons/ci";
 import { BsArrowRight } from "react-icons/bs";
-import { useBuzz } from "../hook/buzz";
+import { useBuzz } from "../Connector/buzz";
 import { useEffect, useState } from "react";
 import { LoginUtil } from "./LoginUtil";
 import { useRouter } from "next/router";

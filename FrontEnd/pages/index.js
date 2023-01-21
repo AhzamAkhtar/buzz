@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import { useBuzz } from '../hook/buzz'
+import { useBuzz } from '../Connector/buzz'
 import {WalletMultiButton} from '@solana/wallet-adapter-react-ui'
 import Hero from '../components/Hero'
 import Navbar from '../components/Navbar'

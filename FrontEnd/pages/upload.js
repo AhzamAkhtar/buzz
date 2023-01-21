@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useBuzz } from "../hook/buzz";
+import { useBuzz } from "../Connector/buzz";
 import { AiOutlinePlus } from "react-icons/ai";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";

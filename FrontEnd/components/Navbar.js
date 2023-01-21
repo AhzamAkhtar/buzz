@@ -1,7 +1,7 @@
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import { BsArrowRight, BsArrowLeft } from "react-icons/bs";
-import { useBuzz } from "../hook/buzz";
+import { useBuzz } from "../Connector/buzz";
 import { CiLogin } from "react-icons/ci";
 import { NavbarUtil } from "../utils/NavbarUtil";
 import { useRouter } from "next/router";

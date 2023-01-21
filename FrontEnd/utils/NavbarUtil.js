@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useBuzz } from "../hook/buzz";
+import { useBuzz } from "../Connector/buzz";
 import { useRouter } from "next/router";
 export function NavbarUtil() {
   const router = useRouter();

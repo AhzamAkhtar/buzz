@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Header from "../components/InsideComponent/Header";
-import { useBuzz } from "../hook/buzz";
+import { useBuzz } from "../Connector/buzz";
 import Image from "next/image";
 const MySpace = () => {
   const {
