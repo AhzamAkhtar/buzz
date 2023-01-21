@@ -6,7 +6,7 @@ export function NavbarUtil() {
 
   const { initialized } = useBuzz();
   const [word, setWord] = useState(false);
-
+  const [home,setHome] = useState(false)
   useEffect(() => {
     const manageState = () => {
       if (initialized == true) {
@@ -17,6 +17,7 @@ export function NavbarUtil() {
       }
       if(router.asPath=="/main" || router.asPath=="/upload" || router.asPath=="/myspace"){
         setWord("HOME")
+        setHome(true)
       }
     };
     manageState();
@@ -24,5 +25,6 @@ export function NavbarUtil() {
 
   return {
     word,
+    home
   };
 }
