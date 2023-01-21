@@ -48,6 +48,7 @@ const upload = () => {
         pauseOnHover
       />
       <Header/>
+      <h2 className="flex flex-col text-3xl justify-center items-center">Explore !!!</h2>
       <div class="p-2 w-full flex flex-col justify-end items-end ">
         {upload ? (
           <>
@@ -66,6 +67,7 @@ const upload = () => {
             >
               <AiOutlinePlus />
             </button>
+            <h2 className="mt-2 mr-5">Upload Here!!</h2>
           </>
         )}
       </div>
