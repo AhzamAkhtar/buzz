@@ -7,7 +7,6 @@ import { NavbarUtil } from "../utils/NavbarUtil";
 import { useRouter } from "next/router";
 const Navbar = () => {
   const router = useRouter();
-
   console.log(router.asPath);
   const { initialized } = useBuzz();
   const WalletMultiButtonDynamic = dynamic(
@@ -38,9 +37,7 @@ const Navbar = () => {
           </a>
           <nav class="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400	flex flex-wrap items-center text-base justify-center">
             <a class="mr-5 hover:text-white text-xl">First Link</a>
-            {/* <a class="mr-5 hover:text-gray-900">Second Link</a>
-            <a class="mr-5 hover:text-gray-900">Third Link</a>
-            <a class="mr-5 hover:text-gray-900">Fourth Link</a> */}
+               
           </nav>
           <WalletMultiButtonDynamic
             style={{
@@ -54,11 +51,11 @@ const Navbar = () => {
               <>
                 {home ? (
                   <>
-                    <BsArrowLeft className="ml-1 w-5 text-3xl" />
+                    <BsArrowLeft onClick={()=> router.push("/")}  className="ml-1 w-5 text-3xl" />
                   </>
                 ) : (
                   <>
-                    <BsArrowRight className="ml-1 w-5 text-3xl" />
+                    <BsArrowRight onClick={()=> router.push("/main")}  className="ml-1 w-5 text-3xl" />
                   </>
                 )}
               </>
