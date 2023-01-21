@@ -7,29 +7,31 @@ import { useEffect, useState } from "react";
 import { LoginUtil } from "./LoginUtil";
 import { useRouter } from "next/router";
 import Login from "./Login";
+import dynamic from "next/dynamic";
+import {
+  useAnchorWallet,
+  useConnection,
+  useWallet,
+} from "@solana/wallet-adapter-react";
 const Hero = () => {
+  const WalletMultiButtonDynamic = dynamic(
+    async () =>
+      (await import("@solana/wallet-adapter-react-ui")).WalletMultiButton,
+    { ssr: false }
+  );
+  const { publicKey } = useWallet();
   const router = useRouter();
   const { initialized } = useBuzz();
   const { loginState, turnLoginTrue } = LoginUtil();
-  const [disabled, setDisabled] = useState(true);
-  const [loginPointer, setLoginPointer] = useState("not-allowed");
-  const [diveInPointer, setDiveInPointer] = useState("pointer");
-  const [login, setLogin] = useState(false);
+  const [isPublicKey, setPublicKey] = useState(false);
   useEffect(() => {
     const check = () => {
-      if (initialized == true) {
-        setDisabled(false);
-        setLoginPointer("not-allowed");
-        setDiveInPointer("pointer");
-      }
-      if (initialized == false) {
-        setDisabled(true);
-        setLoginPointer("pointer");
-        setDiveInPointer("not-allowed");
+      if (publicKey) {
+        setPublicKey(true);
       }
     };
     check();
-  }, [initialized]);
+  }, [publicKey]);
   return (
     <>
       <div id="top">
@@ -63,27 +65,38 @@ const Hero = () => {
             <p>With buzz... </p>
           </h1>
           <div class="flex justify-center">
-            {initialized ? (
+            {isPublicKey ? (
               <>
-                <button
-                  onClick={() => router.push("/main")}
-                  class={`md:mr-5 bg-white text-black py-4 px-10 rounded-3xl inline-flex items-center mx-10 mt-10 cursor-${diveInPointer}`}
-                  disabled={disabled}
-                >
-                  <span>DIVE IN</span>
-                  <BsArrowRight className="ml-1 w-5 text-3xl" />
-                </button>
+                {initialized ? (
+                  <>
+                    <button
+                      onClick={() => router.push("/main")}
+                      class={`md:mr-5 bg-white text-black py-4 px-10 rounded-3xl inline-flex items-center mx-10 mt-10 `}
+                    >
+                      <span>DIVE IN</span>
+                      <BsArrowRight className="ml-1 w-5 text-3xl" />
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <button
+                      onClick={() => turnLoginTrue()}
+                      class={`md:ml-5 bg-white text-black py-4 px-10 rounded-3xl inline-flex items-center mx-10 mt-10 `}
+                    >
+                      <span>LOGIN</span>
+                      <CiLogin className="ml-1 w-8 text-3xl" />
+                    </button>
+                  </>
+                )}
               </>
             ) : (
               <>
-                <button
-                  onClick={() => turnLoginTrue()}
-                  class={`md:ml-5 bg-white text-black py-4 px-10 rounded-3xl inline-flex items-center mx-10 mt-10 cursor-${loginPointer}`}
-                  disabled={!disabled}
-                >
-                  <span>LOGIN</span>
-                  <CiLogin className="ml-1 w-8 text-3xl" />
-                </button>
+                <WalletMultiButtonDynamic
+                  style={{
+                    marginRight: "10px",
+                    borderRadius: "50vw",
+                  }}
+                />
               </>
             )}
           </div>
