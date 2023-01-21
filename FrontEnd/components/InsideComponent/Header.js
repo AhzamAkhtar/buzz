@@ -11,7 +11,7 @@ const Header = () => {
           </button>
 
           <button onClick={()=> router.push("/main")} class="bg-white text-black py-2 px-4 rounded-3xl inline-flex items-center">
-            People
+            PEOPLE
           </button>
 
           <button onClick={()=> router.push("/myspace")} class="bg-white text-black py-2 px-4 rounded-3xl inline-flex items-center mx-5">
