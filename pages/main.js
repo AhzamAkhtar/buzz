@@ -26,8 +26,8 @@ const main = () => {
         AAAA
       </button> */}
       <section class="text-gray-600 body-font mx-5">
-        <div class="container px-5 py-5 mx-auto">
-          <div class="flex flex-wrap -m-5 px-24 py-1 ">
+        <div class="container px-5 py-5 mx-auto ">
+          <div class="flex flex-wrap -m-5 px-24 py-1 sm:px-2 ">
             {}
             {allUsers.map((item, keys) => {
               if (keys < upperBound && keys >= lowerBound) {
