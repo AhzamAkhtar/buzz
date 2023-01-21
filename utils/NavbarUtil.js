@@ -1,0 +1,28 @@
+import { useState, useEffect } from "react";
+import { useBuzz } from "../hook/buzz";
+import { useRouter } from "next/router";
+export function NavbarUtil() {
+  const router = useRouter();
+
+  const { initialized } = useBuzz();
+  const [word, setWord] = useState(false);
+
+  useEffect(() => {
+    const manageState = () => {
+      if (initialized == true) {
+        setWord("DIVE IN");
+      }
+      if (initialized == false) {
+        setWord("LOGIN");
+      }
+      if(router.asPath=="/main" || router.asPath=="/upload" || router.asPath=="/myspace"){
+        setWord("HOME")
+      }
+    };
+    manageState();
+  }, [initialized , router.asPath]);
+
+  return {
+    word,
+  };
+}

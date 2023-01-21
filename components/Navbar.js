@@ -3,29 +3,25 @@ import { useEffect, useState } from "react";
 import { BsArrowRight } from "react-icons/bs";
 import { useBuzz } from "../hook/buzz";
 import { CiLogin } from "react-icons/ci";
+import { NavbarUtil } from '../utils/NavbarUtil';
+import { useRouter } from 'next/router';
 const Navbar = () => {
+  const  router = useRouter()
+  console.log(router.asPath)
+  const {initialized} = useBuzz()
   const WalletMultiButtonDynamic = dynamic(
     async () => (await import('@solana/wallet-adapter-react-ui')).WalletMultiButton,
     { ssr: false }
 );
+  const {
+    word
+  } = NavbarUtil()
 
-  const [word, setWord] = useState("LOGIN");
   const [loginIcon,setLoginIcon] = useState(true)
-  const { initialized } = useBuzz();
 
-  useEffect(() => {
-    const check = () => {
-      if (initialized == true) {
-        setWord("DIVE IN");
-        setLoginIcon(false)
-      }
-      if (initialized == false) {
-        setWord("LOGIN");
-        setLoginIcon(true)
-      }
-    };
-    check();
-  }, [initialized]);
+
+
+
   return (
     <>
       <header class="text-gray-600 body-font">
@@ -59,11 +55,11 @@ const Navbar = () => {
           />
           <button class="bg-white text-black py-2 px-4 rounded-3xl inline-flex items-center">
             <span>{word}</span>
-            { loginIcon ? (
-            <CiLogin className="ml-1 w-5 text-3xl" />
+            { initialized ? (
+            <BsArrowRight className="ml-1 w-5 text-3xl" />
 
             ):(
-              <BsArrowRight className="ml-1 w-5 text-3xl" />
+              <CiLogin className="ml-1 w-5 text-3xl" />
             )}
           </button>
         </div>
