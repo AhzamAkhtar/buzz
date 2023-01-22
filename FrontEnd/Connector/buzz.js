@@ -66,7 +66,6 @@ export function useBuzz() {
   const showToastForVideo = () => {
     toast.success("Video Uploaded Successfully !!", {
       toastId: "abx",
-
       position: "bottom-left",
       autoClose: 4000,
       hideProgressBar: false,
