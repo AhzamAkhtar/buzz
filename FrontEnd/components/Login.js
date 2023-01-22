@@ -129,7 +129,7 @@ const Login = () => {
               Description Yourself
               </label>
               <input
-                placeholder="Enter Your Country"
+                placeholder="Tell Abount Yourself"
                 onChange={countryHandler}
                 value={country}
                 type="text"
@@ -140,7 +140,7 @@ const Login = () => {
                 Enter Your Country
               </label>
               <input
-                placeholder="Tell Abount Yourself"
+                placeholder="Enter Your Country"
                 onChange={descriptionHandler}
                 value={description}
                 type="text"
