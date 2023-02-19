@@ -6,6 +6,8 @@ use crate::{constant::* , states::*};
 
 declare_id!("9nkxvUwAiDKAus88nosvDnae6ZTiU419uAGfpNnUg6GE");
 
+// main program/functions
+
 const USER_NAME_LENGTH : usize = 100;
 const USER_URL_LENGTH : usize = 225;
 const USER_DESCRIPTION_LENGTH : usize = 225;
