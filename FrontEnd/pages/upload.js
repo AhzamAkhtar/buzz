@@ -161,7 +161,7 @@ const upload = () => {
                 )}
 
                 <p class=" text-gray-500 mt-3">
-                  #start your new journey  
+                    
                 </p>
               </div>
             </div>
