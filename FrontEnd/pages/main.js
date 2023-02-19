@@ -84,7 +84,7 @@ const main = () => {
                               No of Friends - {item.account.totalFriend}
                             </h2>
                             <h2 class=" text-gray-900 title-font text-sm mt-2 font-sans">
-                              Description about {item.account.name} -{" "}
+                              Description of {item.account.name} -{" "}
                               {item.account.description.slice(0, 50) + "....."}
                             </h2>
                           </div>
