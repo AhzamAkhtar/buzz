@@ -9,9 +9,9 @@ Products like this support free speech and provide personal data security while 
 # Tech Stack  Used in This Project 
 
 1 - Next Js
-2 - Tailwind Css
-3 - Anchor Framework 
-4 - Solana
+ 2 - Tailwind Css
+ 3 - Anchor Framework 
+ 4 - Solana
 
 # Working Demo 
 
