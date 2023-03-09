@@ -17,6 +17,7 @@ Products like this support free speech and provide personal data security while 
 
 Youtube Link  -  https://youtu.be/FEmtADA4Axs
 
+
 # Project Screenshots
 
 
@@ -37,4 +38,9 @@ Youtube Link  -  https://youtu.be/FEmtADA4Axs
 ![App Screenshot](/FrontEnd/public/ScreenShots/6.png)
 
 
+# How To Run This Project In Your Local Machine
 
+1 - Fork This Repo
+ 2 - Then Clone It
+ 3 - Open Terminal Then Write npm i
+ 4 - Now , write npm run dev 
