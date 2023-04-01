@@ -1,5 +1,5 @@
 
-# Buzz Web3 Social Media Platform
+# Buzz (A Web3 Social Media Platform)
 
 # Description - 
 
