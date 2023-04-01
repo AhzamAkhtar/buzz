@@ -6,21 +6,6 @@ import {WalletMultiButton} from '@solana/wallet-adapter-react-ui'
 import Hero from '../components/Hero'
 import Navbar from '../components/Navbar'
 const Home = () => {
-  const {
-    initialized,
-    transactionPending,
-    name,
-    age,
-    gender,
-    profileUrl,
-    nameHandler,
-    ageHandler,
-    genderHandler,
-    profileUrlHandler,
-    initializeUser,
-    addFriendfun,
-    allUsers
-  } = useBuzz()
 
   return(
     <>
