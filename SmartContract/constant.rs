@@ -11,3 +11,6 @@ pub const STATUS_TAG : &[u8] = b"STATUS_STATE";
 
 #[constant]
 pub const VIDEO_TAG : &[u8] = b"VIDEO_STATE";
+
+#[constant]
+pub const ADD_LIKE : &[u8] = b"LIKE_STATE"
