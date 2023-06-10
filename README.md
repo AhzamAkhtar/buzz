@@ -6,7 +6,7 @@
 Buzz is one of the web3 social dApp created on top of the Solana blockchain network where anyone can share their ideas and media and make new friends without worrying about being observed by a centralized entity ,
 Products like this support free speech and provide personal data security while giving users more ownership and control over their data.
 
-# Problem it Solves
+# Problems it Solves
 
 Data Privacy: Centralized social media platforms often collect and monetize user data without explicit consent, leading to privacy concerns. A decentralized app could give users more control over their personal data.
 
